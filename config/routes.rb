@@ -4,10 +4,10 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   
-  resources :users,  only: [:show,  :index]
-  resources :payments,  only: [:show,  :index]
-  resources :groups,  only: [:show,  :index]
-  resources :settings,  only: [:show,  :index]
+  resources :users,     only: [:show, :index]
+  resources :payments,  only: [:show, :index]
+  resources :groups,    only: [:show, :index]
+  resources :settings,  only: [:show, :index]
 
   namespace :admin do
     resources :users do
