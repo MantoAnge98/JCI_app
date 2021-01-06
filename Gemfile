@@ -37,6 +37,9 @@ gem 'bootstrap', '~> 5.0.0.alpha3'
  
 gem 'jquery-rails', '~> 4.4'
 
+#For international number
+gem 'intl-tel-input-rails'
+
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
