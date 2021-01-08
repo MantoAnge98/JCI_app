@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="form-head d-flex mb-3 align-items-start">
+    <div class="mr-auto"> 
+      <p class="mb-0">Bienvenue <%= @user.name %></p> 
+        <%= link_to "Mes payments", payments_path, class:"btn btn-secondary"%> 
+        <%= link_to "Mon Group", groups_path, class: "btn btn-secondary"%> 
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4 col-md-3 col-lg-2">
+      <%= image_tag (@user.avatar_thumbnail), style: 'height:150px;width:150px;'%>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td><strong>Name </strong>: <%= @user.name %></td>
+          </tr>
+          <tr>
+            <td><strong>Prénom </strong>: <%= @user.first_name %></td>
+          </tr>
+          <tr>
+            <td><strong>Email </strong>: <%= @user.email %></td>
+          </tr>
+          <tr>
+            <td><strong>Telephone </strong>: <%= @user.telephone %></td>
+          </tr>
+          <tr>
+            <td><strong>Nom du Groupe </strong>: <%= @user.group.name %></td>
+          </tr>
+          <tr>
+            <td><strong>Date d'ajout </strong>: <%= @user.added_since %></td>
+          </tr>
+           <tr>
+            <td><strong>Votre devise </strong>: <%= @user.group.name %></td>
+          </tr>
+        </tbody>
+      </table>  
+    </div>
+  </div>
+</div>

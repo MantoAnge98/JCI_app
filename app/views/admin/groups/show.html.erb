@@ -1,0 +1,25 @@
+<div class="container">
+ 
+<h4>Information</h4>
+  <table class="table text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>Name</th> 
+        <th>Description</th> 
+        <th>Action</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr> 
+        <td><%= @group.name %></td>
+        <td><%= @group.description %></td> 
+        <td>
+          <%= link_to  "Back", admin_groups_path, class: "btn btn-secondary col-2" %> |
+          <%= link_to "Edit Group", edit_admin_group_path(@group), class: "btn btn-secondary col-2" %> |
+          <%= link_to "Delete User", admin_group_path(@group.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary col-2"%> 
+        </td>
+      </tr>
+    </tbody>  
+  </table>
+ 
+</div>

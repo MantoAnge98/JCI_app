@@ -1,0 +1,27 @@
+<div class="container">
+ 
+<h4>Information</h4>
+  <table class="table text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>Date Payment</th> 
+        <th>Note</th>
+        <th>Pay Amount</th> 
+        <th>Action</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr> 
+        <td><%= @payment.date_payment %></td>
+        <td><%= @payment.note %></td>
+        <td><%= @payment.pay_amount %></td> 
+        <td>
+          <%= link_to  "Back", admin_payments_path, class: "btn btn-secondary col-2" %> |
+          <%= link_to "Edit", edit_admin_payment_path(@payment), class: "btn btn-secondary col-2" %> |
+          <%= link_to "Delete", admin_payment_path(@payment.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary col-2"%> 
+        </td>
+      </tr>
+    </tbody>  
+  </table>
+ 
+</div>

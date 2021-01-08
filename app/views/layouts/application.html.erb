@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <%if user_signed_in?%>
+      <%= render "/layouts/nav_user" %>
+    <%else%>
+      <%= render "/layouts/navbar" %>
+    <%end%>
+    <%= render 'layouts/messages'%>
     <%= yield %>
   </body>
+  <%= render "/layouts/footer" %>
 </html>

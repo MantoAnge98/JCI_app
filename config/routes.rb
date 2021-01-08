@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
  
-  devise_for :users
-
+  devise_for :users 
+  
   root to: "home#index"
   
-  resources :users,     only: [:show, :index]
-  resources :payments,  only: [:show, :index]
-  resources :groups,    only: [:show, :index]
-  resources :settings,  only: [:show, :index]
+  resources :users,     only: [:show]
+  resources :payments,  only: [:index]
+  resources :groups,    only: [:index]
+  resources :settings,  only: [:index]
 
   namespace :admin do
     resources :users do

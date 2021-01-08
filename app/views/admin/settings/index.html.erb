@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+      <div class="col-12">
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+            <!--<p><%= notice%></p> -->
+        <% end %>
+      </div>
+    </div>
+    <div class="text-center">
+      <h3>Action:</h3>
+      <%= link_to "Dashboard", root_path, :class=>"btn btn-secondary sm col-2"%>
+      <%=link_to "Logout", destroy_user_session_path, method: :delete,:class=>"btn btn-danger col-2" %>|
+      <%= link_to "Create Setting", new_admin_setting_path, :class=>"btn btn-secondary sm col-2"%> 
+    </div>
+
+    <h4> All Setting Information</h4>
+  <table class="table">
+    <thead class="thead-primary">
+        <tr>
+          <th>devise</th> 
+          <th>Amount due</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @settings.each do |setting| %>
+          <tr>            
+            <td><%= setting.devise%></td>
+            <td><%= setting.amount_due%> </td>
+            <br>
+            <td>  
+              <%= link_to "Edit Setting", edit_admin_setting_path(setting),:class=>"btn btn-secondary" %> |
+              <%= link_to "Delete Setting", admin_setting_path(setting), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody> 
+  </table>
+ <%= paginate @settings%>
+</div>

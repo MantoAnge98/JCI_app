@@ -1,0 +1,55 @@
+<% if current_user.admin? %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <%= link_to image_tag("logo.png"),root_path , class:"logo-area", id: "logo"%>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Bonjour <%= current_user.name%></a>
+          </li>
+          <li class="nav-item active">
+             <%= link_to "User", admin_users_path, class:"nav-item nav-link"%>
+          </li>
+          <li class="nav-item active">
+             <%= link_to "Group", admin_groups_path, class:"nav-item nav-link"%>
+          </li>
+          <li class="nav-item active">
+             <%= link_to "Payment", admin_payments_path, class:"nav-item nav-link"%>
+          </li>
+           <li class="nav-item active">
+             <%= link_to "Setting", admin_settings_path, class:"nav-item nav-link"%>
+          </li> 
+          <%= button_to  "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger"%>  
+        </ul>
+      </div>
+    </div>
+  </nav> 
+  <% elsif user_signed_in?%>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <%= link_to image_tag("logo.png"),root_path , class:"logo-area", id: "logo"%>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Bonjour <%= current_user.name%></a>
+          </li>  
+          <li class="nav-item active">  
+            <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger"%>
+          </li>   
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+<%end%>
+

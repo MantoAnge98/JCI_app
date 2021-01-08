@@ -35,7 +35,9 @@ gem 'devise'
 
 gem 'bootstrap', '~> 5.0.0.alpha3'
  
-gem 'jquery-rails', '~> 4.4'
+gem 'jquery-rails'
+
+gem "font-awesome-rails"
 
 #For international number
 gem 'intl-tel-input-rails'

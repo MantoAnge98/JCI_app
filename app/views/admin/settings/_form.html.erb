@@ -1,0 +1,36 @@
+<div id="error_explanation">  
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+      <%= pluralize(@setting.errors.count, "error") %> prohibited
+      this setting from being saved:
+      </h4>
+      <ul>
+      <% @setting.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger">
+          <li><%= msg %></li>
+        </div>
+      <% end %>
+      </ul>
+    </div>  
+  <% end %>
+</div>
+
+<%= form_with(model: @settings, url: admin_settings_path, local: true) do |f| %>
+  
+  <div class="field form-goup">
+    <%= f.label :Devise %>
+    <%= f.text_field :devise, :class => 'form-control' %> 
+  </div>
+
+  <div class="field form-goup">
+    <%= f.label :Amount %>
+    <%= f.number_field :amount_due, :class => 'form-control' %> 
+  </div>
+  <br>
+  <div class="text-center mb-2">
+    <%= f.submit "Submit", :class => "btn btn-primary col-2"%> |
+    <%= link_to "Back", admin_settings_path, :class => "btn btn-secondary col-2" %> 
+  </div>
+
+<% end %>
