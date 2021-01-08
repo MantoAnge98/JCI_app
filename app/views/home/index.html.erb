@@ -1,6 +1,13 @@
 <div class="container"> 
-  <% if current_user && current_user.admin? %>
+  <div class="col-12">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+      <!--<p><%= notice%></p> -->
+    <% end %>
+  </div>
+  <%if user_signed_in?%>
     <div class="col-lg-12 text-center">
+    <%if current_user.admin? %>
       <div class="row justify-content-center">
         <h1 class="mt-5">Bienvenue</h1>    
         <div class="home-card col-lg-3 mb-3">
@@ -16,10 +23,7 @@
           <%= link_to  "GROUP", admin_groups_path %> 
         </div>
       </div>
-    </div>
-  <%end%>
-  <%if user_signed_in?%>
-    <div class="col-lg-12 text-center">
+    <%else%>
     <div class="row justify-content-center">
       <h1 class="mt-5">Bienvenue</h1>    
       <div class="home-card col-lg-3 mb-3">
@@ -35,6 +39,7 @@
         <%= link_to  "GROUP", groups_path %> 
       </div>
     </div>
+    <%end%>
   <%else%> 
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">

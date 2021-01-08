@@ -1,4 +1,6 @@
- <h4>Payment Information</h4> 
+ <div class="container"> 
+  <br>
+  <h4>Payment Information</h4> 
   <br>
   <table class="table text-center">
     <thead class="thead-light">
@@ -6,31 +8,25 @@
         <th>Date Payment</th> 
         <th>Note</th> 
         <th>Payment Amount</th>  
-        <th>Action</th>
       </tr>
     </thead> 
     <tbody> 
     <% nbre = 0 %>
       <% @payments.each do |payment| %> 
-        <tr>   
-          <% if @user.id == payment.user_id%>         
+        <tr>           
             <td><%= payment.date_payment %></td>
             <td><%= payment.note %></td>
-            <td><%= payment.pay_amount %></td>
-            <td>
-              <%= link_to  "Back", admin_users_path, class: "btn btn-secondary" %> |
-              <%= link_to "Edit", edit_admin_payment_path(@user), class: "btn btn-secondary" %> |
-              <%= link_to "Delete", admin_group_path(@user.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
-            </td> 
-            
-            <%#= @payment.where(user_id: payment.user_id).count%>
-            
+            <td><%= payment.pay_amount %></td> 
+            <%#= @payment.where(user_id: payment.user_id).count%> 
             <% if payment.present?%>   
               <% nbre += payment.pay_amount %>
               <% nbre%>
             <%end%>
-          <%end%>
         </tr>   
       <%end %> 
     </tbody>  
-  </table>
+  </table> 
+  <div class="text-center">
+    <%= link_to  "Back", root_path, class: "btn btn-secondary col-3" %>
+  </div>
+</div>
