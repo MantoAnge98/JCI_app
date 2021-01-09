@@ -1,47 +1,49 @@
-<div id="error_explanation">  
-  <% if @payment.errors.any? %>
-    <div id="error_explanation">
-      <h4>
-      <%= pluralize(@payment.errors.count, "error") %> prohibited
-      this payment from being saved:
-      </h4>
-      <ul>
-      <% @payment.errors.full_messages.each do |msg| %>
-        <div class="alert alert-danger">
-          <li><%= msg %></li>
-        </div>
-      <% end %>
-      </ul>
-    </div>  
+<div id="main"  class="container">
+  <div id="error_explanation">  
+    <% if @payment.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+        <%= pluralize(@payment.errors.count, "error") %> prohibited
+        this payment from being saved:
+        </h4>
+        <ul>
+        <% @payment.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger">
+            <li><%= msg %></li>
+          </div>
+        <% end %>
+        </ul>
+      </div>  
+    <% end %>
+  </div>
+
+  <%= form_with(model: @payments, url: admin_payments_path, local: true) do |f| %>
+
+    <div class="field form-goup">
+      <%= f.label :Date_payment %>
+      <%= f.date_field :date_payment, :class => 'form-control' %> 
+    </div>
+
+    <div class="field form-goup">
+      <%= f.label :Note %>
+      <%= f.text_field :note, :class => 'form-control' %> 
+    </div>
+
+    <div class="field form-goup">
+      <%= f.label :Amount %>
+      <%= f.number_field :pay_amount, :class => 'form-control' %> 
+    </div> 
+
+    <div class="field form-goup">
+      <%= f.label :Paid_by %>
+        <%= f.collection_select :user_id, User.all, :id, :name, prompt: true, class: 'js-searchable' %>  
+    </div>
+
+    <br>
+    <div class="text-center mb-2">
+      <%= f.submit "Submit", :class => "btn btn-primary col-2"%> |
+      <%= link_to "Back", admin_payments_path, :class => "btn btn-secondary col-2" %> 
+    </div>
+
   <% end %>
 </div>
-
-<%= form_with(model: @payments, url: admin_payments_path, local: true) do |f| %>
-
-  <div class="field form-goup">
-    <%= f.label :Date_payment %>
-    <%= f.date_field :date_payment, :class => 'form-control' %> 
-  </div>
-
-  <div class="field form-goup">
-    <%= f.label :Note %>
-    <%= f.text_field :note, :class => 'form-control' %> 
-  </div>
-
-  <div class="field form-goup">
-    <%= f.label :Amount %>
-    <%= f.number_field :pay_amount, :class => 'form-control' %> 
-  </div> 
-
-  <div class="field form-goup">
-    <%= f.label :Paid_by %>
-      <%= f.collection_select :user_id, User.all, :id, :name, prompt: true, class: 'js-searchable' %>  
-  </div>
-
-  <br>
-  <div class="text-center mb-2">
-    <%= f.submit "Submit", :class => "btn btn-primary col-2"%> |
-    <%= link_to "Back", admin_payments_path, :class => "btn btn-secondary col-2" %> 
-  </div>
-
-<% end %>

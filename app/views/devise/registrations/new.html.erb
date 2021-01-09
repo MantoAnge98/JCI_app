@@ -1,6 +1,6 @@
-<div class="container-xxl my-md-4 bd-layout"> 
+<div class="container"> 
   <div class="loginForm">
-    <h3 class="text-center">Sign up</h3>
+    <h1 class="text-center">Sign up</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -34,14 +34,14 @@
         <%= f.email_field :email, :class => 'form-control', autocomplete: 'off' %> 
       </div> 
 
-      <div class="mb-3 checkbox text-center"> 
+      <div class="mb-3 text-center"> 
         <%= f.label :Group, class: "form-check-label fw-200 fs-8"  %> 
-        <%= f.collection_select :group_id, Group.all, :id, :name, prompt: true, class: "form-check-input" %> 
+        <%= f.collection_select :group_id, Group.all, :id, :name, {:include_blank =>"Select Group"}, {class: "form-select"} %>
       </div>
 
-      <div class="mb-3 checkbox text-center"> 
+      <div class="mb-3 text-center"> 
         <%= f.label :Setting, class: "form-check-label fw-200 fs-8"  %> 
-        <%= f.collection_select :setting_id, Setting.all, :id, :devise, prompt: true, class: "form-check-input" %>
+        <%= f.collection_select :setting_id, Setting.all, :id, :devise, {:include_blank => "Select Setting"}, {class: "form-select"} %>
       </div>
 
       <div class="mb-3">

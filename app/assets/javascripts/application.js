@@ -14,5 +14,10 @@
 //= require intlTelInput 
 //= require rails-ujs
 //= require jquery3
+//= require jquery_ujs
+//= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
+//= require activestorage 
+//= require turbolinks 
+//= require_tree 

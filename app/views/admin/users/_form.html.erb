@@ -1,4 +1,4 @@
-<div class="container">
+<div id="main" class="container">
   <% if @user.errors.any? %> 
     <div id="error_explanation"  class="alert alert-danger" role="alert"> 
       <h4><%= pluralize(@user.errors.count, "erreurs") %> empêche(nt) <%= @user.name %> d'être sauvegardée(s):</h4> 
