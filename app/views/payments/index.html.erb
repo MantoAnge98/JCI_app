@@ -1,8 +1,8 @@
  <div id="main" class="container py-11"> 
   <br>
-  <h4>Payment Information</h4> 
+  <h4>Vos paiements</h4> 
   <br>
-  <table class="table text-center">
+  <table class="table table-bordered border-primary text-center">
     <thead class="thead-light">
       <tr>
         <th>Date Payment</th> 
@@ -14,16 +14,20 @@
     <% nbre = 0 %>
       <% @payments.each do |payment| %> 
         <tr>           
-            <td><%= payment.date_payment %></td>
-            <td><%= payment.note %></td>
-            <td><%= payment.pay_amount %></td> 
-            <%#= @payment.where(user_id: payment.user_id).count%> 
-            <% if payment.present?%>   
-              <% nbre += payment.pay_amount %>
-              <% nbre%>
-            <%end%>
-        </tr>   
+          <td><%= payment.date_payment %></td>
+          <td><%= payment.note %></td>
+          <td><%= payment.pay_amount %></td> 
+          <%#= @payment.where(user_id: payment.user_id).count%> 
+          <% if payment.present?%>   
+            <% nbre += payment.pay_amount %>
+            <% nbre%>
+          <%end%>
+        </tr> 
       <%end %> 
+        <tr>
+          <th scope="row">Total</th>
+          <td colspan="2" class="table-active fw-bold"><%=nbre%></td>
+        </tr> 
     </tbody>  
   </table> 
   <div class="text-center">
