@@ -4,61 +4,60 @@
       <a class="navbar-brand" href="/">
         <%= link_to image_tag("logo.png"),root_path , class:"logo-area", id: "logo"%>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Bonjour </a>
-          </li>
-           <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.name%>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <%= link_to "Espace Admin", user_path(current_user), class:"dropdown-item"%>
-              <%= link_to  "Payment", payments_path, class:"dropdown-item"%>
-              <%= link_to  "Setting", settings_path, class:"dropdown-item"%>
-              <%= link_to  "Group", groups_path, class:"dropdown-item"%> 
-              <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger dropdown-item"%>
-            </div>
-          </div>     
-        </ul>
-      </div>
-    </div>
-  </nav> 
-  <% elsif user_signed_in?%>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <%= link_to image_tag("logo.png"),root_path , class:"logo-area", id: "logo"%>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto"> 
           <li class="nav-item ">
             <a class="nav-link" href="/">Bonjour </a>
           </li>
           <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-light dropdown-toggle" type="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               <%= current_user.name%>
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Votre compte", user_path(current_user), class:"dropdown-item"%>
+              <%= link_to "Espace Admin", admin_users_path, class:"dropdown-item"%>
+              <%= link_to  "Payment", payments_path, class:"dropdown-item"%>
+              <%= link_to  "Setting", settings_path, class:"dropdown-item"%>
+              <%= link_to  "Group", groups_path, class:"dropdown-item"%> 
+              <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger dropdown-item"%>
+            </div>
+          </div> 
+        </ul>
+      </div>
+    </div>
+  </nav> 
+<% elsif user_signed_in?%>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <%= link_to image_tag("logo.png"),root_path , class:"logo-area", id: "logo"%>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item ">
+            <a class="nav-link" href="/">Bonjour </a>
+          </li>
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.name%>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to  "Mon Espace", user_path(current_user), class:"dropdown-item"%>
               <%= link_to  "Payment", payments_path, class:"dropdown-item"%>
               <%= link_to  "Setting", settings_path, class:"dropdown-item"%>
               <%= link_to  "Group", groups_path, class:"dropdown-item"%> 
               <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger dropdown-item"%>
             </div>
-          </div>
-
+          </div> 
         </ul>
       </div> 
     </div>
-  </nav>   
+  </nav> 
 <%end%>
 

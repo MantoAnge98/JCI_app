@@ -3,13 +3,13 @@
     <thead class="thead-light">
       <tr>
         <th>Image</th> 
-        <th>Name</th> 
-        <th>First Name</th> 
-        <th>Telephone</th>
-        <th>Group</th> 
+        <th>Nom</th> 
+        <th>Prénom</th> 
+        <th>Téléphone</th>
+        <th>Groupe</th> 
         <th>Email</th> 
-        <th>Devise</th>
-        <th>Member Since</th>  
+        <th>La Devise</th>
+        <th>Membre Depuis</th>  
         <th>Action</th>
       </tr>
     </thead> 
@@ -32,25 +32,25 @@
         <%end%> 
         <td><%= @user.added_since %></td> 
         <td>
-          <%= link_to  "Back", admin_users_path, class: "btn btn-secondary" %> |
-          <%= link_to "Edit", edit_admin_user_path(@user), class: "btn btn-secondary" %> |
-          <%= link_to "Delete", admin_group_path(@user.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
+          <%= link_to  "Retour", admin_users_path, class: "btn btn-secondary" %>
+          <%= link_to "Modifier", edit_admin_user_path(@user), class: "btn btn-secondary" %>
+          <%= link_to "Supprimer", admin_group_path(@user.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
         </td>
       </tr>
     </tbody>  
   </table> 
 
   <br>
-    <%= link_to "New Payment", new_admin_payment_path(@user), class: "btn btn-secondary text-center" %>
+    <%= link_to "Nouveau paiement", new_admin_payment_path(@user), class: "btn btn-secondary text-center" %>
   <br>
-  <h4>Payment Information</h4> 
+  <h4>Information sur les paiements</h4> 
   <br>
   <table class="table text-center">
     <thead class="thead-light">
       <tr>
-        <th>Date Payment</th> 
+        <th>Date du paiement</th> 
         <th>Note</th> 
-        <th>Payment Amount</th>  
+        <th>Montant du paiement</th>  
         <!--<th>Action</th>-->
       </tr>
     </thead> 
@@ -80,7 +80,7 @@
     </tbody>  
   </table>
   <p class="text-center">
-    Total payment Amount = <%= nbre%>, <%= @user.setting.devise%>
+    Montant total du paiement = <%= nbre%>, <%= @user.setting.devise%>
     <br>
     <%if @user.added_since.year < Date.today.year%>
       <% date = (Date.today.year - @user.added_since.year).to_i%>

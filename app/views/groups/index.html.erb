@@ -1,7 +1,19 @@
-<div id="main" class="container py-11">
-  <div class="col-12 text-center">
-    <h3>Votre groupe</h3>
-      <p>Nom: <%= current_user.group.name%></p>
-      <p>Description: <%= current_user.group.description%></p>
+<div id="main" class="container py-11"> 
+  <div class="text-center">
+    <h3 class="py-5">Votre groupe</h3>
+    <table class="table table-borderless">
+      <thead class="table-primary">
+        <tr class="fw-bold">
+          <td>Nom</td>
+          <td>Description</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= current_user.group.name%></td>  
+          <td><%= current_user.group.description%></td>  
+        </tr>
+      </tbody>
+    </table>  
   </div>
 </div>

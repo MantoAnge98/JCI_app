@@ -11,29 +11,28 @@
     <div class="col-sm-4 col-md-3 col-lg-2">
       <%= image_tag (@user.avatar_thumbnail), style: 'height:150px;width:150px;'%>
     </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
-      <table class="table table-bordered">
+    <div class="col-sm-12 col-md-11 col-lg-10 py-6">
+      <table class="table table-borderless">
+        <thead class="table-primary">
+          <tr class="fw-bold">
+            <td>Name</td>
+            <td>Prénom</td>
+            <td>Email</td>
+            <td>Téléphone</td>
+            <td>Nom du groupe</td>
+            <td>Date d'ajout</td>
+            <td>Votre devise</td>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <td><strong>Name </strong>: <%= @user.name %></td>
-          </tr>
-          <tr>
-            <td><strong>Prénom </strong>: <%= @user.first_name %></td>
-          </tr>
-          <tr>
-            <td><strong>Email </strong>: <%= @user.email %></td>
-          </tr>
-          <tr>
-            <td><strong>Telephone </strong>: <%= @user.telephone %></td>
-          </tr>
-          <tr>
-            <td><strong>Nom du Groupe </strong>: <%= @user.group.name %></td>
-          </tr>
-          <tr>
-            <td><strong>Date d'ajout </strong>: <%= @user.added_since %></td>
-          </tr>
-           <tr>
-            <td><strong>Votre devise </strong>: <%= @user.setting.devise %></td>
+            <td><%= @user.name %></td>  
+            <td><%= @user.first_name %></td>  
+            <td><%= @user.email %></td> 
+            <td><%= @user.telephone %></td> 
+            <td><%= @user.group.name %></td> 
+            <td><%= @user.added_since %></td> 
+            <td><%= @user.setting.devise %></td>
           </tr>
         </tbody>
       </table>  

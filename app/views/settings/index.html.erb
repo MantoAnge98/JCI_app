@@ -1,10 +1,22 @@
 <div id="main" class="container py-11">
   <div class="col-12 text-center">
-  <br>
+    <br>
     <h3>Vos Paramètres</h3>
-    <div>
+    <div class="text-center py-5">
+      <table class="table table-borderless">
+        <thead class="table-primary">
+          <tr class="fw-bold">
+            <td>Monnaie</td>
+            <td>Montant</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= current_user.setting.devise %></td>  
+            <td><%= current_user.setting.amount_due %></td>  
+          </tr>
+        </tbody>
+      </table>  
     </div>
-      <p>Monnaie: <%= current_user.setting.devise%></p>
-      <p>Montant: <%= current_user.setting.amount_due%></p>
   </div>
 </div>
