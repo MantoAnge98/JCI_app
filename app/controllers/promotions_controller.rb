@@ -1,4 +1,4 @@
-class PromotionController < ApplicationController
+class PromotionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]  
   before_action :set_promotion, only: %i[index]
 
@@ -12,6 +12,6 @@ class PromotionController < ApplicationController
     params.permit(:name, :description, :user_id)
   end 
   def set_promotion
-    @group = Group.find_by(params[:id])
+    @promotion = Promotion.find_by(params[:id])
   end
 end
