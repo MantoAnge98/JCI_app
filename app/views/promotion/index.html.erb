@@ -1,2 +1,19 @@
-<h1>Promotion#index</h1>
-<p>Find me in app/views/promotion/index.html.erb</p>
+<div id="main" class="container py-11"> 
+  <div class="text-center">
+    <h3 class="py-5">Votre Promotion</h3>
+    <table class="table table-borderless">
+      <thead class="table-primary">
+        <tr class="fw-bold">
+          <td>Nom</td>
+          <td>Description</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= current_user.promotion.name%></td>  
+          <td><%= current_user.promotion.description%></td>  
+        </tr>
+      </tbody>
+    </table>  
+  </div>
+</div>
