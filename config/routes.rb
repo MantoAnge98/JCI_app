@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  get 'promotion/index'
   devise_for :users 
   
   root to: "home#index"
