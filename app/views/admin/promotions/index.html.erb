@@ -1,0 +1,60 @@
+<div id="main" class="container">
+  <div class="row">
+      <div class="col-12">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <!--<p><%= notice%></p> -->
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <%if current_user.admin%>
+      <div class="second_section">
+        <div class="row">
+          <div class="col-12">
+            <section class="text-center">
+              <h3>Vos informations:</h3>
+              <p>Nom: <%= current_user.name%></p>
+              <p>Email: <%= current_user.email%></p>
+            </section>
+            <div class="text-center">
+              <h3>Action:</h3>
+              <%= link_to "Créer", new_admin_promotion_path, :class=>"btn btn-primary btn-sm"%>
+              <%=link_to "Déconnexion",admin_user_path(current_user.id),method: :delete, data: { confirm: 'Are you sure?'} ,:class=>"btn btn-danger btn-sm" %>
+              <%= link_to "Tableau de bord", root_path, :class=>"btn btn-secondary btn-sm"%>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    <%end%>
+    <br>
+    <h4> Toutes les informations des promotions</h4>
+  <table class="table">
+    <thead class="thead-primary">
+        <tr>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Nombre d'utilisateur ajouté</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @promotions.each do |promotion| %>
+          <tr>
+            <td><%= promotion.name%> </td>
+            <td><%= promotion.description%></td>
+            <td>
+              <%= promotion.users.count%>
+            </td>
+            <br>
+            <td>  
+              <%= link_to "Motifier", edit_admin_promotion_path(promotion),:class=>"btn btn-secondary btn-sm" %>
+              <%= link_to "Supprimer", admin_promotion_path(promotion), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+      <% end %>
+    </tbody> 
+  </table>
+ <%= paginate @promotions%>
+</div>

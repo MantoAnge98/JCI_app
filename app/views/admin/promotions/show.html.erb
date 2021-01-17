@@ -1,0 +1,23 @@
+<div id="main" class="container">
+  <h4>Information</h4>
+  <table class="table text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>Nom</th> 
+        <th>Description</th> 
+        <th>Action</th>
+      </tr>
+    </thead> 
+    <tbody>
+      <tr> 
+        <td><%= @promotion.name %></td>
+        <td><%= @promotion.description %></td> 
+        <td>
+          <%= link_to "Retour", admin_promotions_path, class: "btn btn-secondary btn-sm" %>
+          <%= link_to "Modifier", edit_admin_promotion_path(@promotion), class: "btn btn-secondary btn-sm" %>
+          <%= link_to "Supprimer", admin_promotion_path(@promotion.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary btn-sm"%> 
+        </td>
+      </tr>
+    </tbody>  
+  </table>
+</div>

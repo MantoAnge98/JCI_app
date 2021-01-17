@@ -1,47 +1,47 @@
 class Admin::PromotionsController < ApplicationController
   before_action :admin_check
-  before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_promotion, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
   def index
     @user = User.all
-    @groups = Group.all.order('created_at DESC').page params[:page]
+    @promotions = Promotion.all.order('created_at DESC').page params[:page]
   end
 
   def new
-    @group = Group.new
+    @promotion = Promotion.new
   end
 
   def edit
-    @group = Group.find(params[:id])
+    @promotion = Promotion.find(params[:id])
   end
   
 
   def show 
-    @group = Group.find(params[:id])
+    @promotion = Promotion.find(params[:id])
   end
   
 
   def create
-    @group = Group.new(group_params)
-    if @group.save
-      redirect_to admin_groups_path, notice: "Group saved!"
+    @promotion = Promotion.new(promotion_params)
+    if @promotion.save
+      redirect_to admin_promotions_path, notice: "Promotion saved!"
     else
       render :new
     end
   end
 
   def update
-    if @group.update(group_params)
-      redirect_to admin_groups_path, notice: "Group updated!"
+    if @promotion.update(promotion_params)
+      redirect_to admin_promotions_path, notice: "Promotion updated!"
     else
       render :edit 
     end
   end
 
   def destroy
-    @group.destroy
-    redirect_to admin_groups_path, notice: "Group deleted!"
+    @promotion.destroy
+    redirect_to admin_promotions_path, notice: "Promotion deleted!"
   end
   
   private
@@ -51,12 +51,12 @@ class Admin::PromotionsController < ApplicationController
     end
   end
 
-  def group_params
+  def promotion_params
     params.permit(:name, :description, :user_id)
   end
 
-  def set_group
-    @group = Group.find(params[:id])
+  def set_promotion
+    @promotion = Promotion.find(params[:id])
   end
   
 end
