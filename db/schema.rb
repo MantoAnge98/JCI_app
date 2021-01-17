@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_112127) do
+ActiveRecord::Schema.define(version: 2021_01_17_083714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2021_01_07_112127) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "promotions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settings", force: :cascade do |t|
@@ -59,14 +66,17 @@ ActiveRecord::Schema.define(version: 2021_01_07_112127) do
     t.bigint "group_id"
     t.bigint "payment_id"
     t.bigint "setting_id"
+    t.bigint "promotion_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["group_id"], name: "index_users_on_group_id"
     t.index ["payment_id"], name: "index_users_on_payment_id"
+    t.index ["promotion_id"], name: "index_users_on_promotion_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["setting_id"], name: "index_users_on_setting_id"
   end
 
   add_foreign_key "users", "groups"
   add_foreign_key "users", "payments"
+  add_foreign_key "users", "promotions"
   add_foreign_key "users", "settings"
 end
