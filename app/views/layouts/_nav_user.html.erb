@@ -19,9 +19,10 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "Votre compte", user_path(current_user), class:"dropdown-item"%>
               <%= link_to "Espace Admin", admin_users_path, class:"dropdown-item"%>
-              <%= link_to  "Payment", payments_path, class:"dropdown-item"%>
-              <%= link_to  "Setting", settings_path, class:"dropdown-item"%>
-              <%= link_to  "Group", groups_path, class:"dropdown-item"%> 
+              <%= link_to "Les paiements", admin_payments_path, class:"dropdown-item"%>
+              <%= link_to "Les Paramètres", admin_settings_path, class:"dropdown-item"%>
+              <%= link_to "Les Groupes", admin_groups_path, class:"dropdown-item"%>
+              <%= link_to "Les Promotions", admin_promotions_path, class:"dropdown-item"%> 
               <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger dropdown-item"%>
             </div>
           </div> 
@@ -49,9 +50,10 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to  "Mon Espace", user_path(current_user), class:"dropdown-item"%>
-              <%= link_to  "Payment", payments_path, class:"dropdown-item"%>
-              <%= link_to  "Setting", settings_path, class:"dropdown-item"%>
-              <%= link_to  "Group", groups_path, class:"dropdown-item"%> 
+              <%= link_to  "Vos paiements", payments_path, class:"dropdown-item"%>
+              <%= link_to  "Votre paramètre", settings_path, class:"dropdown-item"%>
+              <%= link_to  "Votre groupe", groups_path, class:"dropdown-item"%>
+              <%= link_to  "Votre Promotion", promotions_path, class:"dropdown-item"%>  
               <%= link_to fa_icon('power-off', text: "Déconnexion"), destroy_user_session_path, method: :delete, class: "btn btn-danger dropdown-item"%>
             </div>
           </div> 

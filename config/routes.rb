@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :payments,  only: [:index]
   resources :groups,    only: [:index]
   resources :settings,  only: [:index]
+  resources :promotions,    only: [:index]
 
   namespace :admin do
     resources :users do
@@ -18,6 +19,12 @@ Rails.application.routes.draw do
     end
 
     resources :groups do
+      collection do
+        post :confirm
+      end
+    end
+
+    resources :promotions do
       collection do
         post :confirm
       end
