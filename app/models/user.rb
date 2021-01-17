@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   validates :added_since, presence: true
 
+  belongs_to :promotion
+
   belongs_to :group
 
   has_many :payments
