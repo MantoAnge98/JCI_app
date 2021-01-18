@@ -6,10 +6,6 @@ class SettingsController < ApplicationController
     @settings = Setting.all
   end
 
-  def show 
-    @setting = Setting.find(params[:id])
-  end
-
   private
   def setting_params
     params.permit(:amount_due, :devise, :user_id)
