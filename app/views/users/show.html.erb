@@ -43,13 +43,15 @@
         </tbody>
       </table>  
     </div>
+    <!-- Calcul de l'âge-->
+    <%age = 0%>
+    <%value_age = @user.birthday.year%>
+    <%value_date_now = Date.today.year%>
+    <%age = (value_date_now - value_age).to_i%>
+    <p>Votre âge est: <%= age%></p>
+  </div>
+  <div class="text-center">
+    <%= link_to  "Retour", root_path, class: "btn btn-secondary" %>
   </div>
 </div>
 
-<!-- Calcul de l'âge-->
-
-<%age = 0%>
-<%value_age = @user.birthday.year%>
-<%value_date_now = Date.today.year%>
-<%age = (value_date_now - value_age).to_i%>
-<p>Votre âge est: <%= age%></p>
