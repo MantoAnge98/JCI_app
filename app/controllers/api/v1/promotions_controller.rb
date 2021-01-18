@@ -10,7 +10,7 @@ class Api::V1::PromotionsController < ApplicationController
 
   private 
   def promotion_params
-    params.permit(:name, :description, :user_id)
+    params.permit(:name, :description, :year_promotion, :image_promotion, :user_id)
   end 
   def set_promotion
     @promotion = Promotion.find_by(params[:id])

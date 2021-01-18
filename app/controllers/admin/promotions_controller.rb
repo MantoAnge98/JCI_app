@@ -52,7 +52,7 @@ class Admin::PromotionsController < ApplicationController
   end
 
   def promotion_params
-    params.permit(:name, :description, :user_id)
+    params.permit(:name, :description, :year_promotion, :image_promotion, :user_id)
   end
 
   def set_promotion

@@ -17,10 +17,10 @@ class Admin::UsersController < ApplicationController
     @group = Group.all
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "User created!"
+      flash[:success] = "Utilisateur créé avec succès!"
       redirect_to admin_users_path
     else
-      flash[:danger] = "Error"
+      flash[:danger] = "Erreur"
       render :new
     end
   end
@@ -36,7 +36,7 @@ class Admin::UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-      flash[:success] = "User updated!"
+      flash[:success] = "Utilisateur mise à jour avec succès!"
       redirect_to admin_users_path
     else
       if current_user.admin?
@@ -63,7 +63,7 @@ class Admin::UsersController < ApplicationController
   
   private
   def user_params
-    params.require(:user).permit(:name, :first_name, :email, :telephone, :added_since, :group_id, :setting_id, :admin, :password, :password_confirmation)
+    params.require(:user).permit(:name, :first_name, :email, :telephone, :added_since, :birthday, :profession, :group_id, :setting_id, :admin, :password, :password_confirmation)
   end
   
   def set_user
