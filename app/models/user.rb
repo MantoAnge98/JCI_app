@@ -6,13 +6,17 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  validates :name , presence: true
+  validates :name, presence: true
 
-  validates :first_name , presence: true
+  validates :first_name, presence: true
 
   validates :telephone , presence: true 
 
   validates :added_since, presence: true
+
+  validates :birthday, presence: true
+
+  validates :profession, presence: true
 
   belongs_to :promotion
 
