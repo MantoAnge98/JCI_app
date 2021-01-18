@@ -5,11 +5,22 @@ Rails.application.routes.draw do
   
   root to: "home#index"
   
-  resources :users,     only: [:show]
-  resources :payments,  only: [:index]
-  resources :groups,    only: [:index]
-  resources :settings,  only: [:index]
-  resources :promotions,    only: [:index]
+  #Json fromat routes
+  namespace :api do
+    namespace :v1 do
+      resources :users,       only: [:show]
+      resources :payments,    only: [:index]
+      resources :groups,      only: [:index]
+      resources :settings,    only: [:index]
+      resources :promotions,  only: [:index]
+    end
+   end
+
+  resources :users,       only: [:show], to: 'users#show', as: 'user'
+  resources :payments,    only: [:index]
+  resources :groups,      only: [:index]
+  resources :settings,    only: [:index]
+  resources :promotions,  only: [:index]
 
   namespace :admin do
     resources :users do
