@@ -33,6 +33,8 @@
   <table class="table">
     <thead class="thead-primary">
         <tr>
+          <td>Image</td>
+          <td>Année</td>
           <th>Nom</th>
           <th>Description</th>
           <th>Nombre d'utilisateur ajouté</th>
@@ -41,18 +43,19 @@
     </thead>
     <tbody>
       <% @promotions.each do |promotion| %>
-          <tr>
-            <td><%= promotion.name%> </td>
-            <td><%= promotion.description%></td>
-            <td>
-              <%= promotion.users.count%>
-            </td>
-            <br>
-            <td>  
-              <%= link_to "Motifier", edit_admin_promotion_path(promotion),:class=>"btn btn-secondary btn-sm" %>
-              <%= link_to "Supprimer", admin_promotion_path(promotion), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger btn-sm" %>
-            </td>
-          </tr>
+        <tr>
+          <td><%= image_tag (promotion.image_promotion_thumbnail), style: 'height:150px;width:150px;'%></td>
+          <td><%= promotion.year_promotion%> </td>
+          <td><%= promotion.name%></td>
+          <td><%= promotion.description%></td>
+          <td>
+            <%= promotion.users.count%>
+          </td> 
+          <td>  
+            <%= link_to "Motifier", edit_admin_promotion_path(promotion),:class=>"btn btn-secondary btn-sm" %>
+            <%= link_to "Supprimer", admin_promotion_path(promotion), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger btn-sm" %>
+          </td>
+        </tr>
       <% end %>
     </tbody> 
   </table>

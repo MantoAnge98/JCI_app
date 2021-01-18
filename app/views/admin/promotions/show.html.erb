@@ -3,13 +3,17 @@
   <table class="table text-center">
     <thead class="thead-light">
       <tr>
+        <th>Image</th>
+        <th>Année</th>
         <th>Nom</th> 
         <th>Description</th> 
         <th>Action</th>
       </tr>
     </thead> 
     <tbody>
-      <tr> 
+      <tr>
+        <td><%= image_tag (@promotion.image_promotion_thumbnail), style: 'height:150px;width:150px;'%></td>
+        <td><%= @promotion.year_promotion%> </td> 
         <td><%= @promotion.name %></td>
         <td><%= @promotion.description %></td> 
         <td>
