@@ -13,8 +13,8 @@
       <tbody>
         <tr> 
         <%if current_user.promotion%>
-          <td><%= current_user.promotion.image_promotion%></td>
-          <td><%= current_user.promotion.year_promotion%></td>
+          <td><%= image_tag (@user.image_promotion_thumbnail), style: 'height:150px;width:150px;'%></td>
+          <td><%= (current_user.promotion.year_promotion).year%></td>
           <td><%= current_user.promotion.name%></td>  
           <td><%= current_user.promotion.description%></td>
         <%else%>

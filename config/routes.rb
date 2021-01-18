@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
    end
 
-  resources :users,       only: [:show], to: 'users#show', as: 'user'
+  resources :users,       only: [:show]
   resources :payments,    only: [:index]
   resources :groups,      only: [:index]
   resources :settings,    only: [:index]
