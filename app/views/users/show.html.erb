@@ -17,6 +17,9 @@
           <tr class="fw-bold">
             <td>Name</td>
             <td>Prénom</td>
+            <td>Date naissance/Age</td>
+            <td>Secteur d'activité</td>
+            <td>La promotion</td>
             <td>Email</td>
             <td>Téléphone</td>
             <td>Nom du groupe</td>
@@ -27,7 +30,10 @@
         <tbody>
           <tr>
             <td><%= @user.name %></td>  
-            <td><%= @user.first_name %></td>  
+            <td><%= @user.first_name %></td>
+            <td><%= @user.birthday %></td>
+            <td><%= @user.profession %></td>
+            <td><%= @user.promotion.name %></td>   
             <td><%= @user.email %></td> 
             <td><%= @user.telephone %></td> 
             <td><%= @user.group.name %></td> 
@@ -39,3 +45,11 @@
     </div>
   </div>
 </div>
+
+<!-- Calcul de l'âge-->
+
+<%age = 0%>
+<%value_age = @user.birthday.year%>
+<%value_date_now = Date.today.year%>
+<%age = (value_date_now - value_age).to_i%>
+<p>Votre âge est: <%= age%></p>
