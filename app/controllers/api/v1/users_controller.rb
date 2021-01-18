@@ -6,10 +6,13 @@ class Api::V1::UsersController < ApplicationController
   def index
     @payments = Payment.all  
     @user = current_user
+    render json: @user
+    render json: @payments
   end
 
   def show 
     @user = User.find_by_id(params[:id])
+    render json: @user
   end
 
   private

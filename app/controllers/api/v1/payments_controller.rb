@@ -5,6 +5,7 @@ class Api::V1::PaymentsController < ApplicationController
   def index 
     @user = User.all
     @payments = Payment.all.order('created_at DESC').page params[:page]
+    render json: @payments
   end 
 
   private

@@ -5,6 +5,7 @@ class Api::V1::PromotionsController < ApplicationController
   def index
     @user = User.all
     @promotions = Promotion.all 
+    render json: @promotions
   end
 
   private 

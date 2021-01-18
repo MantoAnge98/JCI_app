@@ -4,6 +4,7 @@ class Api::V1::SettingsController < ApplicationController
   def index
     @user = User.all
     @settings = Setting.all
+    render json: @settings
   end
 
   def show 

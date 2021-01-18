@@ -4,7 +4,8 @@ class Api::V1::GroupsController < ApplicationController
 
   def index
     @user = User.all
-    @groups = Group.all 
+    @groups = Group.all
+    render json: @groups 
   end
 
   private 
