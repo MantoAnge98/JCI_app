@@ -32,7 +32,7 @@
         <%end%> 
         <td><%= @user.added_since %></td> 
         <td>
-          <%= link_to  "Retour", admin_users_path, class: "btn btn-secondary" %>
+          <%= link_to "Retour", admin_users_path, class: "btn btn-secondary" %>
           <%= link_to "Modifier", edit_admin_user_path(@user), class: "btn btn-secondary" %>
           <%= link_to "Supprimer", admin_group_path(@user.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
         </td>

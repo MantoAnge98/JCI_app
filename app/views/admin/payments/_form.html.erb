@@ -36,7 +36,7 @@
 
     <div class="field form-goup">
       <%= f.label :Paid_by %>
-        <%= f.collection_select :user_id, User.all, :id, :name, prompt: true, class: 'js-searchable' %>  
+        <%= f.collection_select :user_id, User.all, :id, :name, prompt: true, {:include_blank => true}, {class: "dropdown-menu"}%>  
     </div>
 
     <br>

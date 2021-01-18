@@ -1,4 +1,4 @@
-<div id="main" class="container">
+<div id="main" class="container py-11">
   <div class="row">
       <div class="col-12">
         <% flash.each do |key, value| %>
@@ -7,29 +7,34 @@
         <% end %>
       </div>
     </div>
-    <hr>
-    <%if current_user.admin%>
-      <div class="second_section">
-        <div class="row">
-          <div class="col-12">
-            <section class="first_section text-center">
-              <h3>Your information:</h3>
-              <p>Name: <%= current_user.name%></p>
-              <p>Email: <%= current_user.email%></p>
-            </section>
-            <div class="text-center">
-              <h3>Action:</h3>
-              <%= link_to "Create Group", new_admin_group_path, :class=>"btn btn-secondary sm col-2"%>|
-              <%=link_to "Logout",admin_user_path(current_user.id),method: :delete, data: { confirm: 'Are you sure?'} ,:class=>"btn btn-danger col-2" %>|
-              <%= link_to "Dashboard", root_path, :class=>"btn btn-secondary sm col-2"%>
-            </div>
-            <hr>
-          </div>
+   <%if current_user.admin%> 
+      <div class="row">
+        <div class="col-12 text-center"> 
+          <h5 class="py-4">Vos informations:</h5>
+          <table class="table table-borderless">
+            <thead class="table-primary">
+              <tr class="fw-bold">
+                <td>Nom</td> 
+                <td>Email</td>
+                <td>Action</td> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= current_user.name%></td>
+                <td><%= current_user.email%></td>
+                <td>
+                  <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
+                  <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
+                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
+                </td>
+              </tr>
+            </tbody>
+          </table>  
         </div>
-      </div>
-    <%end%>
-    <br>
-    <h4> All Group Information</h4>
+      </div> 
+    <%end%> 
+  <h4> Informations des groupes</h4>
   <table class="table">
     <thead class="thead-primary">
         <tr>

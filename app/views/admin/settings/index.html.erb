@@ -1,4 +1,4 @@
-<div id="main" class="container">
+<div id="main" class="container py-11">
   <div class="row">
       <div class="col-12">
         <% flash.each do |key, value| %>
@@ -7,19 +7,40 @@
         <% end %>
       </div>
     </div>
-    <div class="text-center">
-      <h3>Action:</h3>
-      <%= link_to "Dashboard", root_path, :class=>"btn btn-secondary sm col-2"%>
-      <%=link_to "Logout", destroy_user_session_path, method: :delete,:class=>"btn btn-danger col-2" %>|
-      <%= link_to "Create Setting", new_admin_setting_path, :class=>"btn btn-secondary sm col-2"%> 
-    </div>
+     <%if current_user.admin%> 
+      <div class="row">
+        <div class="col-12 text-center"> 
+          <h5 class="py-4">Vos informations:</h5>
+          <table class="table table-borderless">
+            <thead class="table-primary">
+              <tr class="fw-bold">
+                <td>Nom</td> 
+                <td>Email</td>
+                <td>Action</td> 
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= current_user.name%></td>
+                <td><%= current_user.email%></td>
+                <td>
+                  <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
+                  <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
+                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
+                </td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>
+      </div> 
+    <%end%> 
 
-    <h4> All Setting Information</h4>
+    <h4> Information sur les paramètres</h4>
   <table class="table">
     <thead class="thead-primary">
         <tr>
-          <th>devise</th> 
-          <th>Amount due</th>
+          <th>La Devise</th> 
+          <th>Montant paramétré</th>
           <th>Action</th>
         </tr>
     </thead>
@@ -30,8 +51,8 @@
             <td><%= setting.amount_due%> </td>
             <br>
             <td>  
-              <%= link_to "Edit Setting", edit_admin_setting_path(setting),:class=>"btn btn-secondary" %> |
-              <%= link_to "Delete Setting", admin_setting_path(setting), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
+              <%= link_to "Modifier", edit_admin_setting_path(setting),:class=>"btn btn-secondary" %>
+              <%= link_to "Supprimer", admin_setting_path(setting), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
             </td>
           </tr>
       <% end %>

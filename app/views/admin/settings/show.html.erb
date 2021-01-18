@@ -14,9 +14,9 @@
         <td><%= @setting.amount_due%></td>
         <td><%= @setting.devise %></td> 
         <td>
-          <%= link_to  "Back", admin_settings_path, class: "btn btn-secondary col-2" %> |
-          <%= link_to "Edit Setting", edit_admin_setting_path(@setting), class: "btn btn-secondary col-2" %> |
-          <%= link_to "Delete User", admin_setting_path(@setting.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary col-2"%> 
+          <%= link_to "Retour", admin_settings_path, class: "btn btn-secondary" %>
+          <%= link_to "Modifier", edit_admin_setting_path(@setting), class: "btn btn-secondary" %>
+          <%= link_to "Supprimer", admin_setting_path(@setting.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
         </td>
       </tr>
     </tbody>  
