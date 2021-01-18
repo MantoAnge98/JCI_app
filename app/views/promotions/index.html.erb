@@ -4,15 +4,17 @@
     <table class="table table-borderless">
       <thead class="table-primary">
         <tr class="fw-bold">
+          <td>Image</td>
+          <td>Année</td>
           <td>Nom</td>
           <td>Description</td>
-          <td>Année</td>
-          <td>Image</td>
         </tr>
       </thead>
       <tbody>
         <tr> 
         <%if current_user.promotion%>
+          <td><%= current_user.promotion.image_promotion%></td>
+          <td><%= current_user.promotion.year_promotion%></td>
           <td><%= current_user.promotion.name%></td>  
           <td><%= current_user.promotion.description%></td>
         <%else%>
