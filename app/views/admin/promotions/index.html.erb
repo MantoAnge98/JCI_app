@@ -49,7 +49,12 @@
     <tbody>
       <% @promotions.each do |promotion| %>
         <tr>
-          <td><%= image_tag (promotion.image_promotion_thumbnail), style: 'height:150px;width:150px;'%></td>
+          <td>
+            <%#= image_tag (promotion.image_promotion_thumbnail), style: 'height:150px;width:150px;'%>
+            <%= link_to promotion.image_promotion_url do %>
+              <%= image_tag promotion.image_promotion_url, class: "thumbnail", style: 'height:150px;width:150px;' %>
+            <% end %>
+          </td>
           <td><%= promotion.year_promotion%> </td>
           <td><%= promotion.name%></td>
           <td><%= promotion.description%></td>

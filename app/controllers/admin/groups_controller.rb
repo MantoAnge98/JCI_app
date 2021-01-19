@@ -1,5 +1,4 @@
 class Admin::GroupsController < ApplicationController
-  before_action :admin_check
   before_action :set_group, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
@@ -45,12 +44,6 @@ class Admin::GroupsController < ApplicationController
   end
   
   private
-  def admin_check
-    unless current_user.admin?
-      redirect_to root_path, notice: "Only Admin can Logged"
-    end
-  end
-
   def group_params
     params.permit(:name, :description, :user_id)
   end

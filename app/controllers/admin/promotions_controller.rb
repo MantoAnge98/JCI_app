@@ -1,7 +1,6 @@
 class Admin::PromotionsController < ApplicationController
-  before_action :admin_check
   before_action :set_promotion, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!
 
   def index
     @user = User.all
@@ -45,14 +44,8 @@ class Admin::PromotionsController < ApplicationController
   end
   
   private
-  def admin_check
-    unless current_user.admin?
-      redirect_to root_path, notice: "Only Admin can Logged"
-    end
-  end
-
   def promotion_params
-    params.permit(:name, :description, :year_promotion, :image_promotion, :user_id)
+    params.permit(:name, :description, :year_promotion, :image_promotion, :image_promotion_cache, :user_id)
   end
 
   def set_promotion

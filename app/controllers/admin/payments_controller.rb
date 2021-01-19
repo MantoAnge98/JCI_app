@@ -1,5 +1,4 @@
 class Admin::PaymentsController < ApplicationController
-  before_action :admin_check
   before_action :set_payment, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
 
@@ -43,12 +42,6 @@ class Admin::PaymentsController < ApplicationController
   end
   
   private
-  def admin_check
-    unless current_user.admin?
-      redirect_to root_path, notice: "Only Admin can Logged"
-    end
-  end
-
   def payment_params
     params.permit(:date_payment, :note, :pay_amount, :user_id)
   end

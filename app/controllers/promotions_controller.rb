@@ -9,7 +9,7 @@ class PromotionsController < ApplicationController
 
   private 
   def promotion_params
-    params.permit(:name, :description, :year_promotion, :image_promotion, :user_id)
+    params.permit(:name, :description, :year_promotion, :image_promotion, :image_promotion_cache, :user_id)
   end 
   def set_promotion
     @promotion = Promotion.find_by(params[:id])

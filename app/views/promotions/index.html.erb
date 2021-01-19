@@ -1,4 +1,4 @@
-<div id="main" class="container py-11"> 
+<div class="container py-11"> 
   <div class="text-center">
     <h3 class="py-5">Votre promotion</h3>
     <table class="table table-borderless">
@@ -13,7 +13,12 @@
       <tbody>
         <tr> 
         <%if current_user.promotion%>
-          <td><%= image_tag (@user.image_promotion_thumbnail), style: 'height:150px;width:150px;'%></td>
+          <td>
+            <%= link_to promotion.image_promotion_url do %>
+              <%= image_tag promotion.image_promotion_url, class: "thumbnail", style: 'height:150px;width:150px;' %>
+            <% end %>
+            <%#= image_tag (promotion.image_promotion_thumbnail), style: 'height:150px;width:150px;'%>
+          </td>
           <td><%= (current_user.promotion.year_promotion).year%></td>
           <td><%= current_user.promotion.name%></td>  
           <td><%= current_user.promotion.description%></td>
@@ -25,9 +30,7 @@
         <%end%>
         </tr>
       </tbody>
-    </table>  
-  </div>
-  <div class="text-center">
-    <%= link_to  "Retour", root_path, class: "btn btn-secondary" %>
+    </table>
+    <%= link_to  "Retour", root_path, class: "btn btn-secondary" %>  
   </div>
 </div>

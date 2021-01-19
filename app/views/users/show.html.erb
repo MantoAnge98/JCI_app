@@ -33,7 +33,9 @@
             <td><%= @user.first_name %></td>
             <td><%= @user.birthday %></td>
             <td><%= @user.profession %></td>
-            <td><%= @user.promotion.name %></td>   
+            <%if @user.promotion%>
+              <td><%= @user.promotion.name %></td>
+            <%end%>   
             <td><%= @user.email %></td> 
             <td><%= @user.telephone %></td> 
             <td><%= @user.group.name %></td> 
@@ -45,7 +47,8 @@
     </div>
     <!-- Calcul de l'âge-->
     <%age = 0%>
-    <%value_age = @user.birthday.year%>
+    <%value_age1 = @user.birthday%>
+    <%value_age = value_age1.year%>
     <%value_date_now = Date.today.year%>
     <%age = (value_date_now - value_age).to_i%>
     <p>Votre âge est: <%= age%></p>
