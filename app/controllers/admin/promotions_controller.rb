@@ -1,6 +1,7 @@
 class Admin::PromotionsController < ApplicationController
   before_action :set_promotion, only: %i[show edit update destroy]
   before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   def index
     @user = User.all
@@ -24,7 +25,7 @@ class Admin::PromotionsController < ApplicationController
   def create
     @promotion = Promotion.new(promotion_params)
     if @promotion.save
-      redirect_to admin_promotions_path, notice: "Promotion saved!"
+      redirect_to admin_promotions_path, notice: "Promotion enregistrée avec succès!"
     else
       render :new
     end
@@ -32,7 +33,7 @@ class Admin::PromotionsController < ApplicationController
 
   def update
     if @promotion.update(promotion_params)
-      redirect_to admin_promotions_path, notice: "Promotion updated!"
+      redirect_to admin_promotions_path, notice: "Promotion mise à jour avec succès!"
     else
       render :edit 
     end
@@ -40,12 +41,19 @@ class Admin::PromotionsController < ApplicationController
 
   def destroy
     @promotion.destroy
-    redirect_to admin_promotions_path, notice: "Promotion deleted!"
+    redirect_to admin_promotions_path, notice: "Promotion supprimée avec succès!"
   end
   
-  private
+  private 
+  def authenticate_admin! 
+    unless current_user.admin?
+      flash[:info] = "Vous n'avez pas les privilèges pour accéder à cette page."
+      redirect_to root_path
+    end
+  end
+
   def promotion_params
-    params.permit(:name, :description, :year_promotion, :image_promotion, :image_promotion_cache, :user_id)
+    params.require(:promotion).permit(:name, :description, :year_promotion, :image_promotion, :image_promotion_cache, :user_id)
   end
 
   def set_promotion

@@ -1,4 +1,4 @@
-<div id="main" class="container py-11">
+<div id="main" class="container py-4 text-center">
   <div class="row">
       <div class="col-12">
         <% flash.each do |key, value| %>
@@ -9,58 +9,37 @@
     </div>
    <%if current_user.admin%> 
       <div class="row">
-        <div class="col-12 text-center"> 
-          <h5 class="py-4">Vos informations:</h5>
-          <table class="table table-borderless">
+        <div class="col-12"> 
+          <h5 class=" fw-normal text-uppercase py-8">Information des groupes</h5>
+          <table class="table table-borderless"> 
             <thead class="table-primary">
-              <tr class="fw-bold">
-                <td>Nom</td> 
-                <td>Email</td>
-                <td>Action</td> 
+              <tr class="fs-1 fw-bold">
+                <th>Name</th>
+                <th>Description</th>
+                <th>Nombre d'utilisateur ajoutés</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><%= current_user.name%></td>
-                <td><%= current_user.email%></td>
-                <td>
-                  <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
-                </td>
-              </tr>
-            </tbody>
+              <% @groups.each do |group| %>
+                <tr>
+                  <td><%= group.name%> </td>
+                  <td><%= group.description%></td>
+                  <td>
+                    <%= group.users.count%>
+                  </td> 
+                  <td> 
+                    <%= link_to fa_icon('eye', text: "Voir"), groups_path(group.id), class: "btn btn-outline-primary btn-sm" %>
+                    <%= link_to fa_icon('edit', text: "Modifier"), edit_admin_group_path(group),:class=>"btn btn-outline-secondary btn-sm" %>
+                    <%= link_to fa_icon('trash', text: "Supprimer"), admin_group_path(group), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-outline-danger btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>  
           </table>  
         </div>
+        <%= link_to fa_icon('plus', text: "Ajouter un groupe"), new_admin_group_path, class: "btn btn-outline-primary btn-sm col-3 mx-auto" %>
       </div> 
-    <%end%> 
-  <h4> Informations des groupes</h4>
-  <table class="table">
-    <thead class="thead-primary">
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Number of users added</th>
-          <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @groups.each do |group| %>
-          <tr>
-            <td><%= group.name%> </td>
-            <td><%= group.description%></td>
-            <td>
-              <%= group.users.count%>
-            </td>
-            <br>
-            <td> 
-              <%= link_to "Edit User", admin_group_path(group), class: "btn btn-secondary col-2" %> |
-              <%= link_to "Edit Group", edit_admin_group_path(group),:class=>"btn btn-secondary" %> |
-              <%= link_to "Delete Group", admin_group_path(group), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
-            </td>
-          </tr>
-      <% end %>
-    </tbody> 
-  </table>
+    <%end%>  
  <%= paginate @groups%>
 </div>

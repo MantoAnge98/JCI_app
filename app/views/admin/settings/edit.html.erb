@@ -1,2 +1,36 @@
-<h3>Edit</h3>
-<%= render 'form', group: @group %>
+<div id="main"  id="error_explanation">  
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+      <%= pluralize(@setting.errors.count, "error") %> prohibited
+      this setting from being saved:
+      </h4>
+      <ul>
+      <% @setting.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger">
+          <li><%= msg %></li>
+        </div>
+      <% end %>
+      </ul>
+    </div>  
+  <% end %> 
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h4 class="py-5 fw-normal fs-3 text-uppercase text-center"> Modification</h4>
+      <%= form_with(model: @setting, url: admin_setting_path, local: true) do |f| %> 
+        <div class="field form-goup">
+          <%= f.label :Devise %>
+          <%= f.text_field :devise, :class => 'form-control' %> 
+        </div> 
+        <div class="field form-goup py-2">
+          <%= f.label :Amount %>
+          <%= f.number_field :amount_due, :class => 'form-control' %> 
+        </div> 
+        <div class="text-center mb-2 py-2">
+          <%= f.submit "Mise à jour", :class => "btn btn-primary"%>
+          <%= link_to  "Retour", admin_settings_path, :class => "btn btn-secondary" %> 
+        </div> 
+      <% end %>
+    </div>
+  </div>
+</div>

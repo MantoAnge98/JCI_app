@@ -14,23 +14,22 @@
       </ul>
     </div>  
   <% end %>
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= form_with(model: @setting, url: admin_settings_path, local: true) do |f| %>
+        <div class="field form-goup">
+          <%= f.label :Devise %>
+          <%= f.text_field :devise, :class => 'form-control'%> 
+        </div> 
+        <div class="field form-goup py-2">
+          <%= f.label :Montant %>
+          <%= f.number_field :amount_due, :class => 'form-control' %> 
+        </div> 
+        <div class="text-center mb-2 py-2">
+          <%= f.submit "Valider", :class => "btn btn-primary"%>
+          <%= link_to  "Retour", admin_settings_path, :class => "btn btn-secondary" %> 
+        </div> 
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= form_with(model: @settings, url: admin_settings_path, local: true) do |f| %>
-  
-  <div class="field form-goup">
-    <%= f.label :Devise %>
-    <%= f.text_field :devise, :class => 'form-control' %> 
-  </div>
-
-  <div class="field form-goup">
-    <%= f.label :Amount %>
-    <%= f.number_field :amount_due, :class => 'form-control' %> 
-  </div>
-  <br>
-  <div class="text-center mb-2">
-    <%= f.submit "Valider", :class => "btn btn-primary"%>
-    <%= link_to  "Retour", admin_settings_path, :class => "btn btn-secondary" %> 
-  </div>
-
-<% end %>

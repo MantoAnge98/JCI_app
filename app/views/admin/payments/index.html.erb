@@ -1,43 +1,16 @@
-<div id="main" class="container py-11">
+<div id="main" class="container py-11 text-center">
   <div class="row">
-      <div class="col-12">
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
-            <!--<p><%= notice%></p> -->
-        <% end %>
-      </div>
+    <div class="col-12">
+      <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <!--<p><%= notice%></p> -->
+      <% end %>
     </div>
-    <%if current_user.admin%> 
-      <div class="row">
-        <div class="col-12 text-center"> 
-          <h5 class="py-4">Vos informations:</h5>
-          <table class="table table-borderless">
-            <thead class="table-primary">
-              <tr class="fw-bold">
-                <td>Nom</td> 
-                <td>Email</td>
-                <td>Action</td> 
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= current_user.name%></td>
-                <td><%= current_user.email%></td>
-                <td>
-                  <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
-                </td>
-              </tr>
-            </tbody>
-          </table>  
-        </div>
-      </div> 
-    <%end%> 
-  <h4> Information sur les paiements</h4>
-  <table class="table">
-    <thead class="thead-primary">
-        <tr>
+  </div>
+  <h4 class="py-3 fs-3 fw-normal text-uppercase"> Information sur tous les paiements</h4>
+  <table class="table table-borderless">
+    <thead class="table-primary">
+        <tr class="fs-1 fw-bold">
           <th>Date de paiement</th>
           <th>Note</th>
           <th>Montant du paiement</th>
@@ -56,13 +29,15 @@
                 <%= payment.user.name%>
               <%end%>
             </td> 
-            <td>  
-              <%= link_to "Modifier", edit_admin_payment_path(payment),:class=>"btn btn-secondary" %>
-              <%= link_to "Supprimer", admin_payment_path(payment), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
+            <td>
+              <%= link_to fa_icon('eye', text: "Voir"), payments_path(payment.id), class: "btn btn-outline-primary btn-sm" %>
+              <%= link_to fa_icon('edit', text: "Modifier"), edit_admin_payment_path(payment),:class=>"btn btn-outline-secondary btn-sm" %>
+              <%= link_to fa_icon('trash', text: "Supprimer"), admin_payment_path(payment), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-outline-danger btn-sm" %>
             </td>
           </tr>
       <% end %>
     </tbody> 
   </table>
  <%= paginate @payments%>
+ <%= link_to fa_icon('plus', text: "Ajouter un paiement"), new_admin_payment_path, class: "btn btn-outline-primary btn-sm col-3 mx-auto" %>
 </div>

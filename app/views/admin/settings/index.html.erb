@@ -1,62 +1,39 @@
-<div id="main" class="container py-11">
+<div id="main" class="container">
   <div class="row">
-      <div class="col-12">
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
-            <!--<p><%= notice%></p> -->
-        <% end %>
-      </div>
+    <div class="col-12">
+      <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <!--<p><%= notice%></p> -->
+      <% end %>
     </div>
-     <%if current_user.admin%> 
-      <div class="row">
-        <div class="col-12 text-center"> 
-          <h5 class="py-4">Vos informations:</h5>
-          <table class="table table-borderless">
-            <thead class="table-primary">
-              <tr class="fw-bold">
-                <td>Nom</td> 
-                <td>Email</td>
-                <td>Action</td> 
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= current_user.name%></td>
-                <td><%= current_user.email%></td>
-                <td>
-                  <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
+  </div> 
+  <div class="row">
+    <div class="col-12 text-center"> 
+      <h5 class="fw-normal text-uppercase py-5"> Information sur les paramètres</h5>
+      <table class="table table-borderless">
+        <thead class="table-primary">
+            <tr class="fs-1 fw-bold text-center">
+              <th>La Devise</th> 
+              <th>Montant</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @settings.each do |setting| %>
+              <tr class="text-center">            
+                <td><%= setting.devise%></td>
+                <td><%= setting.amount_due%> </td> 
+                <td>  
+                  <%= link_to fa_icon('eye', text: "Voir"), settings_path(setting.id), class: "btn btn-outline-primary btn-sm" %>
+                  <%= link_to fa_icon('edit', text: "Modifier"), edit_admin_setting_path(setting),:class=>"btn btn-outline-secondary btn-sm" %>
+                  <%= link_to fa_icon('trash', text: "Supprimer"), admin_setting_path(setting), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-outline-danger btn-sm" %>
                 </td>
               </tr>
-            </tbody>
-          </table>  
-        </div>
-      </div> 
-    <%end%> 
-
-    <h4> Information sur les paramètres</h4>
-  <table class="table">
-    <thead class="thead-primary">
-        <tr>
-          <th>La Devise</th> 
-          <th>Montant paramétré</th>
-          <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-      <% @settings.each do |setting| %>
-          <tr>            
-            <td><%= setting.devise%></td>
-            <td><%= setting.amount_due%> </td>
-            <br>
-            <td>  
-              <%= link_to "Modifier", edit_admin_setting_path(setting),:class=>"btn btn-secondary" %>
-              <%= link_to "Supprimer", admin_setting_path(setting), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-danger" %>
-            </td>
-          </tr>
-      <% end %>
-    </tbody> 
-  </table>
- <%= paginate @settings%>
+          <% end %>
+        </tbody> 
+      </table>
+    </div>
+    <%= link_to fa_icon('plus', text: "Ajouter un paramètre"), new_admin_setting_path, class: "btn btn-outline-primary btn-sm col-3 mx-auto" %>
+  </div>  
+  <%= paginate @settings%>
 </div>

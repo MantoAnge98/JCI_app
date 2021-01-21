@@ -1,6 +1,7 @@
 class Admin::GroupsController < ApplicationController
   before_action :set_group, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!
+  before_action :authenticate_admin!
 
   def index
     @user = User.all
@@ -24,7 +25,7 @@ class Admin::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to admin_groups_path, notice: "Group saved!"
+      redirect_to admin_groups_path, notice: "Groupe créé avec succès!"
     else
       render :new
     end
@@ -32,7 +33,7 @@ class Admin::GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to admin_groups_path, notice: "Group updated!"
+      redirect_to admin_groups_path, notice: "Groupe mise à jour avec succès!"
     else
       render :edit 
     end
@@ -40,12 +41,19 @@ class Admin::GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    redirect_to admin_groups_path, notice: "Group deleted!"
+    redirect_to admin_groups_path, notice: "Groupe supprimé avec succès!"
   end
   
-  private
+  private 
+  def authenticate_admin! 
+    unless current_user.admin?
+      flash[:info] = "Vous n'avez pas les privilèges pour accéder à cette page."
+      redirect_to root_path
+    end
+  end
+
   def group_params
-    params.permit(:name, :description, :user_id)
+    params.require(:group).permit(:name, :description, :user_id)
   end
 
   def set_group

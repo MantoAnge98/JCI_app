@@ -5,5 +5,5 @@ class Setting < ApplicationRecord
 
   validates :devise, presence: true
   
-  paginates_per 10
+  paginates_per 5
 end

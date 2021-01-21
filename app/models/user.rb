@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   belongs_to :setting
   
-  paginates_per 10
+  paginates_per 5
 
   def avatar_thumbnail
     if avatar.present?

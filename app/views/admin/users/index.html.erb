@@ -1,4 +1,4 @@
-<div id="main" class="container py-11">
+<div class="container py-4 text-center">
   <div class="row">
       <div class="col-12">
         <% flash.each do |key, value| %>
@@ -9,11 +9,11 @@
     </div> 
     <%if current_user.admin%> 
       <div class="row">
-        <div class="col-12 text-center"> 
-          <h5 class="py-4">Vos informations:</h5>
+        <div class="col-12"> 
+          <h5 class="py-4 text-uppercase fw-normal">Vos informations:</h5>
           <table class="table table-borderless">
             <thead class="table-primary">
-              <tr class="fw-bold">
+              <tr class="fs-1 fw-bold">
                 <td>Nom</td> 
                 <td>Email</td>
                 <td>Action</td> 
@@ -26,7 +26,7 @@
                 <td>
                   <%= link_to "Acceuil", root_path, :class=>"btn btn-secondary btn-sm"%>
                   <%= link_to "Ajouter utilisateur", new_admin_user_path, :class=>"btn btn-secondary btn-sm"%>
-                  <%=link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
+                  <%= link_to "Déconnexion", destroy_user_session_path, method: :delete,:class=>"btn btn-danger btn-sm" %> 
                 </td>
               </tr>
             </tbody>
@@ -34,51 +34,48 @@
         </div>
       </div> 
     <%end%> 
-
-  <div class="text-center">
-    <h5 class="py-8"> Information de tous les utilisation.</h5>
-      <table class="table table-borderless">
-        <thead class="table-light">
+  <h5 class="mt-11 py-4 text-uppercase fw-normal"> Information de tous les utilisations.</h5>
+    <table class="table table-borderless">
+      <thead class="table-light">
+          <tr class="fs-1 fw-bold">
+            <th>Admin</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Telephone</th>
+            <th>Nom du groupe</th>
+            <th>Email</th>
+            <th>Membre Depuis</th>
+            <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
             <tr>
-              <th>Admin</th>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Telephone</th>
-              <th>Nom du groupz</th>
-              <th>Email</th>
-              <th>Membre Depuis</th>
-              <th>Action</th>
+                <td><%= user.admin %></td>
+                <td>
+                  <%#= link_to "#{user.name}", admin_user_path(user)%>
+                    <button type="button" class="btn btn-primary rounded-pill">
+                      <%= link_to "#{user.name}", admin_user_path(user), id: "userName"%> 
+                      <span class="badge bg-light text-dark"><%=user.payments.count%></span> 
+                    </button>
+                </td>
+                <td><%= user.first_name%></td>
+                <td><%= user.telephone%></td>
+                <td>
+                  <% if user.group%>
+                    <%= user.group.name %>
+                  <% end%>
+                </td> 
+                <td><%= user.email%></td>
+                <td><%= user.added_since%></td>
+                <td> 
+                  <%= link_to fa_icon('see', text: "Afficher"), admin_user_path(user), class: "btn btn-outline-primary btn-sm" %>
+                  <%= link_to fa_icon('edit', text: "Modifier"), edit_admin_user_path(user),:class=>"btn btn-outline-secondary btn-sm" %>
+                  <%= link_to fa_icon('trash', text: "Supprimer"), admin_user_path(user), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-outline-danger btn-sm" %>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-              <tr>
-                  <td><%= user.admin %></td>
-                  <td>
-                    <%#= link_to "#{user.name}", admin_user_path(user)%>
-                      <button type="button" class="btn btn-primary rounded-pill">
-                        <%= link_to "#{user.name}", admin_user_path(user), id: "userName"%> 
-                        <span class="badge bg-light text-dark"><%=user.payments.count%></span> 
-                      </button>
-                  </td>
-                  <td><%= user.first_name%></td>
-                  <td><%= user.telephone%></td>
-                  <td>
-                    <% if user.group%>
-                      <%= user.group.name %>
-                    <% end%>
-                  </td> 
-                  <td><%= user.email%></td>
-                  <td><%= user.added_since%></td>
-                  <td> 
-                    <%= link_to "Afficher", admin_user_path(user), class: "btn btn-outline-primary btn-sm" %>
-                    <%= link_to "Modifier", edit_admin_user_path(user),:class=>"btn btn-outline-secondary btn-sm" %>
-                    <%= link_to "Supprimer", admin_user_path(user), method: :delete, data: { confirm: 'are you sure ?' },:class=>"btn btn-outline-danger btn-sm" %>
-                  </td>
-              </tr>
-          <% end %>
-        </tbody> 
-      </table>
-    <%= paginate @users%>
-  </div>
+        <% end %>
+      </tbody> 
+    </table>
+  <%= paginate @users%>
 </div>

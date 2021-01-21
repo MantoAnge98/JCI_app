@@ -1,2 +1,46 @@
-<h3>Edit</h3>
-<%= render 'form', group: @group %>
+<div id="main"  class="container">
+  <div id="error_explanation">  
+    <% if @payment.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+        <%= pluralize(@payment.errors.count, "error") %> prohibited
+        this payment from being saved:
+        </h4>
+        <ul>
+        <% @payment.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger">
+            <li><%= msg %></li>
+          </div>
+        <% end %>
+        </ul>
+      </div>  
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-6 mx-auto">
+    <h4 class="py-5 fw-normal fs-3 text-uppercase text-center"> Modification</h4>
+      <%= form_with(model: @payment, url: admin_payment_path, local: true) do |f| %>
+        <div class="field form-goup">
+          <%= f.label :Date_payment %>
+          <%= f.date_field :date_payment, :class => 'form-control' %> 
+        </div> 
+        <div class="field form-goup">
+          <%= f.label :Note %>
+          <%= f.text_field :note, :class => 'form-control' %> 
+        </div> 
+        <div class="field form-goup">
+          <%= f.label :Amount %>
+          <%= f.number_field :pay_amount, :class => 'form-control' %> 
+        </div>  
+        <div class="field form-goup">
+          <%= f.label :Paid_by %>
+            <%= f.collection_select :user_id, User.all, :id, :name,{include_blank: "Choisir une personne.."}, {class: "form-control"}%>  
+        </div> 
+        <div class="text-center mb-2 py-2">
+          <%= f.submit "Mise à jour", :class => "btn btn-outline-primary btn-sm"%>
+          <%= link_to fa_icon('arrow-left', text: "Retour"), admin_payments_path, :class => "btn btn-outline-secondary btn-sm" %> 
+        </div> 
+      <% end %>
+    </div>
+  </div>
+</div>

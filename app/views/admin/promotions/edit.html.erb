@@ -1,2 +1,47 @@
-<h3>Modifier</h3>
-<%= render 'form', promotion: @promotion %>
+<div id="main" class="container">
+  <div id="error_explanation">  
+    <% if @promotion.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+        <%= pluralize(@promotion.errors.count, "error") %> prohibited
+        this promotion from being saved:
+        </h4>
+        <ul>
+        <% @promotion.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger">
+            <li><%= msg %></li>
+          </div>
+        <% end %>
+        </ul>
+      </div>  
+    <% end %>
+  </div> 
+  <div class="row">
+    <div class="col-6 mx-auto">
+    <h4 class="py-5 fw-normal fs-3 text-uppercase text-center"> Modification</h4>
+      <%= form_with(model: @promotions, url: admin_promotion_path, local: true) do |f| %> 
+        <div class="form-group">
+          <label class="mb-1"><span>Add photo</span></label>
+          <%= f.file_field :image_promotion, autofocus: true, accept:"image/*", autocomplete: "image_promotion",class:"form-control"%>
+          <%= f.hidden_field :image_promotion_cache %>
+        </div> 
+        <div class="form-group">
+          <label class="mb-1"><strong>Année</strong></label>
+            <%= f.date_field :year_promotion, autofocus: true, autocomplete: "year_promotion", class:"form-control", placeholder:"Promotion year", :required=> true%>
+        </div> 
+        <div class="form-group">
+          <label class="mb-1"><strong>Nom</strong></label>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control", placeholder:"Promotion name", :required=> true%>
+        </div> 
+        <div class="form-group">
+          <label class="mb-1"><strong>Description</strong></label>
+          <%= f.text_area :description, autofocus: true, autocomplete: "description", class:"form-control", placeholder:"Promotion description", :required=> true%>
+        </div> 
+        <div class="text-center mb-2">
+          <%= f.submit "Valider", :class => "btn btn-primary"%>
+          <%= link_to  "Retour", admin_promotions_path, :class => "btn btn-secondary" %> 
+        </div>  
+      <% end %>
+    </div>
+  </div>
+</div>

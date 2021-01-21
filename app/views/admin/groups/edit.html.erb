@@ -1,2 +1,41 @@
-<h3>Edit</h3>
-<%= render 'form', group: @group %>
+<div id="main" class="container">
+  <div id="error_explanation">  
+    <% if @group.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+        <%= pluralize(@group.errors.count, "error") %> prohibited
+        this group from being saved:
+        </h4>
+        <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger">
+            <li><%= msg %></li>
+          </div>
+        <% end %>
+        </ul>
+      </div>  
+    <% end %>
+  </div>  
+  <div class="row">
+    <div class="col-6 mx-auto">
+    <h4 class="py-5 fw-normal fs-3 text-uppercase text-center"> Modification</h4>
+      <%= form_with(model: @group, url: admin_group_path, local: true) do |f| %> 
+        <div class="form-inputs">
+          <div class="form-group">
+            <label class="mb-1"><strong>Nom</strong></label>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class:"form-control", placeholder:"Group name", :required=> true%>
+          </div> 
+          <div class="form-group py-2">
+            <label class="mb-1"><strong>Description</strong></label>
+            <%= f.text_area :description, autofocus: true, autocomplete: "description", class:"form-control", placeholder:"Group description", :required=> true%>
+          </div> 
+          <div class="text-center mb-2 py-3">
+            <%= f.submit "Mise à jour", :class => "btn btn-outline-primary btn-sm"%>
+            <%= link_to fa_icon('arrow-left', text: "Retour"), admin_groups_path, :class => "btn btn-outline-secondary btn-sm" %> 
+          </div>
+        </div>  
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -1,25 +1,19 @@
 <div id="main" class="container py-11">
-  <div class="col-12 text-center">
-    <br>
-    <h3>Vos Paramètres</h3>
-    <div class="text-center py-5">
-      <table class="table table-borderless">
-        <thead class="table-primary">
-          <tr class="fw-bold">
-            <td>Monnaie</td>
-            <td>Montant</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= current_user.setting.devise %></td>  
-            <td><%= current_user.setting.amount_due %></td>  
-          </tr>
-        </tbody>
-      </table>  
-    </div>
-    <div class="text-center">
-      <%= link_to  "Retour", root_path, class: "btn btn-secondary" %>
-    </div>
+  <div class="col-12 text-center"> 
+    <h3 class="py-5 fs-4 fw-normal">Paramètres</h3>
+    <table class="table table-borderless">
+      <thead class="table-primary">
+        <tr class="fw-bold fs-1">
+          <td>Monnaie</td>
+          <td>Montant</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= current_user.setting.devise %></td>  
+          <td><%= current_user.setting.amount_due %></td>  
+        </tr>
+      </tbody>
+    </table>   
   </div>
 </div>

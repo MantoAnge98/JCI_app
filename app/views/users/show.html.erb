@@ -1,11 +1,20 @@
 <div id="main" class="container">
   <div class="form-head d-flex mb-3 align-items-start">
-    <div class="mr-auto py-11"> 
-      <p class="mb-0">Bienvenue <%= @user.name %></p> 
-        <%= link_to "Mes payments", payments_path, class:"btn btn-secondary"%> 
-        <%= link_to "Mon Group", groups_path, class: "btn btn-secondary"%> 
+    <div class="mr-auto"> 
+      <p class="mb-0 py-5">Bienvenue <%= @user.name %></p> 
+        <%= link_to "Ma promotion", promotions_path, class:"btn btn-secondary btn-sm"%>
+        <%= link_to "Mes payments", payments_path, class:"btn btn-secondary btn-sm"%> 
+        <%= link_to "Mon Group", groups_path, class: "btn btn-secondary btn-sm"%>  
     </div>
   </div>
+
+  <!-- Calcul de l'âge-->
+  <%age = 0%>
+  <%value_age1 = @user.birthday%>
+  <%value_age = value_age1.year%>
+  <%value_date_now = Date.today.year%>
+  <%age = (value_date_now - value_age).to_i%>
+  <!-- <p>Votre âge est: <%#= age%></p> -->
 
   <div class="row">
     <div class="col-sm-4 col-md-3 col-lg-2">
@@ -14,10 +23,11 @@
     <div class="col-sm-12 col-md-11 col-lg-10 py-6">
       <table class="table table-borderless">
         <thead class="table-primary">
-          <tr class="fw-bold">
+          <tr class="fw-bolder fs-1">
             <td>Name</td>
             <td>Prénom</td>
             <td>Date naissance/Age</td>
+            <td>Age</td>
             <td>Secteur d'activité</td>
             <td>La promotion</td>
             <td>Email</td>
@@ -28,10 +38,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr class="fw-bolder fs-1">
             <td><%= @user.name %></td>  
             <td><%= @user.first_name %></td>
             <td><%= @user.birthday %></td>
+            <td><%= age %></td>
             <td><%= @user.profession %></td>
             <%if @user.promotion%>
               <td><%= @user.promotion.name %></td>
@@ -45,16 +56,6 @@
         </tbody>
       </table>  
     </div>
-    <!-- Calcul de l'âge-->
-    <%age = 0%>
-    <%value_age1 = @user.birthday%>
-    <%value_age = value_age1.year%>
-    <%value_date_now = Date.today.year%>
-    <%age = (value_date_now - value_age).to_i%>
-    <p>Votre âge est: <%= age%></p>
-  </div>
-  <div class="text-center">
-    <%= link_to  "Retour", root_path, class: "btn btn-secondary" %>
-  </div>
+  </div> 
 </div>
 

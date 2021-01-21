@@ -7,5 +7,5 @@ class Payment < ApplicationRecord
 
   validates :pay_amount, presence: true
 
-  paginates_per 10
+  paginates_per 5
 end

@@ -16,34 +16,30 @@
       </div>  
     <% end %>
   </div>
-
-  <%= form_with(model: @payments, url: admin_payments_path, local: true) do |f| %>
-
-    <div class="field form-goup">
-      <%= f.label :Date_payment %>
-      <%= f.date_field :date_payment, :class => 'form-control' %> 
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= form_with(model: @payment, url: admin_payments_path, local: true) do |f| %>
+        <div class="field form-goup">
+          <%= f.label :Date_payment %>
+          <%= f.date_field :date_payment, :class => 'form-control' %> 
+        </div> 
+        <div class="field form-goup">
+          <%= f.label :Note %>
+          <%= f.text_field :note, :class => 'form-control' %> 
+        </div> 
+        <div class="field form-goup">
+          <%= f.label :Amount %>
+          <%= f.number_field :pay_amount, :class => 'form-control' %> 
+        </div>  
+        <div class="field form-goup">
+          <%= f.label :Paid_by %>
+            <%= f.collection_select :user_id, User.all, :id, :name,{include_blank: "Choisir une personne.."}, {class: "form-control"}%>  
+        </div> 
+        <div class="text-center mb-2 py-2">
+          <%= f.submit "Valider", :class => "btn btn-outline-primary btn-sm"%>
+          <%= link_to fa_icon('arrow-left', text: "Retour"), admin_payments_path, :class => "btn btn-outline-secondary btn-sm" %> 
+        </div> 
+      <% end %>
     </div>
-
-    <div class="field form-goup">
-      <%= f.label :Note %>
-      <%= f.text_field :note, :class => 'form-control' %> 
-    </div>
-
-    <div class="field form-goup">
-      <%= f.label :Amount %>
-      <%= f.number_field :pay_amount, :class => 'form-control' %> 
-    </div> 
-
-    <div class="field form-goup">
-      <%= f.label :Paid_by %>
-        <%= f.collection_select :user_id, User.all, :id, :name, prompt: true, {:include_blank => true}, {class: "dropdown-menu"}%>  
-    </div>
-
-    <br>
-    <div class="text-center mb-2">
-      <%= f.submit "Valider", :class => "btn btn-primary"%>
-      <%= link_to "Retour", admin_payments_path, :class => "btn btn-secondary" %> 
-    </div>
-
-  <% end %>
+  </div>
 </div>

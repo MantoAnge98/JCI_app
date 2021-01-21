@@ -1,4 +1,4 @@
-<div id="main" class="container">
+<div id="main"  id="error_explanation">  
   <% if @user.errors.any? %> 
     <div id="error_explanation"  class="alert alert-danger" role="alert"> 
       <h4><%= pluralize(@user.errors.count, "erreurs") %> empêche(nt) <%= @user.name %> d'être sauvegardée(s):</h4> 
@@ -9,98 +9,92 @@
       </ul> 
     </div> 
   <% end %> 
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div class="container">
-        <%= form_with(model: [:admin, @user], local: true) do |f| %>
-          
-          <div class="form-group">
-            <label class="mb-1"><span>Add photo</span></label>
-            <%= f.file_field :avatar, autofocus: true, accept:"image/*", autocomplete: "avatar",class:"form-control"%>
-            <%= f.hidden_field :avatar_cache %>
-          </div>
-          
-          <div class="field form-goup">
-            <%= f.label :Nom %>
-            <%= f.text_field :name, :class => 'form-control' %> 
-          </div>
-
-          <div class="field form-goup">
-            <%= f.label :Prenom %>
-            <%= f.text_field :first_name, :class => 'form-control' %> 
-          </div>
-
-          <div class="field form-goup">
-            <%= f.label :Telephone %>
-            <%= f.number_field :telephone, :class => 'form-control' %> 
-          </div>
-
-          <div class="field form-goup">
-            <%= f.label :Date_ajout %>
-            <%= f.date_field :added_since, :class => 'form-control' %> 
-          </div>
-
-          <div class="field form-goup">
-            <%= f.label :Email %> 
-            <%= f.email_field :email, :class => 'form-control' %> 
-          </div> 
-
-          <div class="field form-goup">
-            <%= f.label :Date_d_anniversaire %> 
-            <%= f.date_field :birthday, :class => 'form-control' %> 
-          </div> 
-
-          <div class="field form-goup">
-            <%= f.label :Metier %> 
-            <%= f.email_field :email, :class => 'form-control' %> 
-          </div> 
-
-          <div class="field" style="margin-bottom:15px">
-            <div class="checkbox">
-              <%= f.label :Admin %> 
-              <%= f.check_box :admin,{}, "true","false" %> 
-            </div>
-          </div> 
-
-          <div class="field" style="margin-bottom:15px">
-            <div class="form-select">
-              <%= f.label :Groupe,  class:'control-label' %> 
-              <%= f.collection_select :group_id, Group.all, :id, :name, prompt: true%>
-            </div>
-          </div> 
-
-          <div class="field" style="margin-bottom:15px"> 
-            <div class="form-select">
-              <%= f.label :Parametre %> 
-              <%= f.collection_select :setting_id, Setting.all, :id, :devise, prompt: true%>
-            </div>
-          </div> 
-
-          <div class="field" style="margin-bottom:15px"> 
-            <div class="form-select">
-              <%= f.label :Promotion %> 
-              <%= f.collection_select :promotion_id, Promotion.all, :id, :name, prompt: true%>
-            </div>
-          </div> 
+  <div class="row"> 
+    <div class="col-6 mx-auto"> 
+      <%= form_with(model: [:admin, @user], local: true) do |f| %> 
+        <div class="form-group">
+          <label class="mb-1"><span>Ajouter photo</span></label>
+          <%= f.file_field :avatar, autofocus: true, accept:"image/*", autocomplete: "avatar",class:"form-control"%>
+          <%= f.hidden_field :avatar_cache %>
+        </div>
         
-          <div class="field">
-            <%= f.label :Mot_det_passe %> 
-            <%= f.password_field :password,  :class => 'form-control'  %>
-          </div>
+        <div class="field form-goup">
+          <%= f.label :Nom %>
+          <%= f.text_field :name, :class => 'form-control', autocomplete: 'off'%> 
+        </div>
 
-          <div class="field">
-            <%= f.label :Confirmer_le_mot_de_passe %> 
-            <%= f.password_field :password_confirmation, autocomplete: "email",  class: "form-control"  %> 
+        <div class="field form-goup">
+          <%= f.label :Prenom %>
+          <%= f.text_field :first_name, :class => 'form-control', autocomplete: 'off' %> 
+        </div>
+
+        <div class="field form-goup">
+          <%= f.label :Telephone %>
+          <%= f.number_field :telephone, :class => 'form-control', autocomplete: 'off' %> 
+        </div>
+
+        <div class="field form-goup">
+          <%= f.label :Date_ajout %>
+          <%= f.date_field :added_since, :class => 'form-control', autocomplete: 'off' %> 
+        </div>
+
+        <div class="field form-goup">
+          <%= f.label :Email %> 
+          <%= f.email_field :email, :class => 'form-control', autocomplete: 'off' %> 
+        </div> 
+
+        <div class="field form-goup">
+          <%= f.label :Date_d_anniversaire %> 
+          <%= f.date_field :birthday, :class => 'form-control' %> 
+        </div> 
+
+        <div class="field form-goup">
+          <%= f.label :Metier %> 
+          <%= f.text_field :profession, :class => 'form-control' %> 
+        </div> 
+
+        <div class="field" style="margin-bottom:15px">
+          <div class="form-check">
+            <%= f.label :Admin, class:"form-check-label", for: "defaultCheck1"%> 
+            <%= f.check_box :admin,{}, "true","false"%> 
           </div>
-          
-          <div class="actions text-center">
-            <%= f.submit "Valider", class: "btn btn-secondary" %>
-            <%= link_to  "Retour", admin_users_path, class: "btn btn-secondary" %>
-          </div> 
-        <% end %>
-      </div>
-    </div>
-    <div class="col-3"></div>
-  </div>
+        </div> 
+        
+        <div class="field" style="margin-bottom:15px">
+          <div class="form-group">
+            <%= f.label :Groupe %> 
+            <%= f.collection_select :group_id, Group.all, :id, :name, {include_blank: "Choisir un groupe.."}, {class: "form-control"}%>
+          </div>
+        </div> 
+
+        <div class="field" style="margin-bottom:15px"> 
+          <div class="form-group">
+            <%= f.label :Parametre %> 
+            <%= f.collection_select :setting_id, Setting.all, :id, :devise,  {include_blank: "Choisir un paramètre.."}, {class: "form-control"}%>
+          </div>
+        </div> 
+
+        <div class="field" style="margin-bottom:15px"> 
+          <div class="form-group">
+            <%= f.label :Promotion %> 
+            <%= f.collection_select :promotion_id, Promotion.all, :id, :name,  {include_blank: "Choisir une promotion.."}, {class: "form-control"}%>
+          </div>
+        </div> 
+      
+        <div class="field">
+          <%= f.label :Mot_det_passe %> 
+          <%= f.password_field :password,  :class => 'form-control'  %>
+        </div>
+
+        <div class="field">
+          <%= f.label :Confirmer_le_mot_de_passe %> 
+          <%= f.password_field :password_confirmation, autocomplete: "email",  class: "form-control"  %> 
+        </div>
+        
+        <div class="actions text-center py-2">
+          <%= f.submit "Valider", class: "btn btn-secondary btn-sm" %>
+          <%= link_to  "Retour", admin_users_path, class: "btn btn-secondary btn-sm" %>
+        </div> 
+      <% end %> 
+    </div> 
 </div>

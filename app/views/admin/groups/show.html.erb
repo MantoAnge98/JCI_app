@@ -1,25 +1,25 @@
-<div id="main" class="container">
- 
-<h4>Information</h4>
-  <table class="table text-center">
-    <thead class="thead-light">
-      <tr>
+<div id="main" class="container"> 
+  <h5 class=" text-center py-4 fw-normal text-uppercase">Information du groupe </h5>
+  <table class="table table-borderless"> 
+    <thead class="table-primary">
+      <tr class="fs-1 fw-bold text-center">
         <th>Name</th> 
-        <th>Description</th> 
+        <th>Description</th>
+        <th>nombre d'utilisateur ajoutés</th> 
         <th>Action</th>
       </tr>
     </thead> 
     <tbody>
-      <tr> 
+      <tr class="fs-1 fw-bold text-center"> 
         <td><%= @group.name %></td>
         <td><%= @group.description %></td> 
+        <td><%= @group.users.count %></td>
         <td>
-          <%= link_to "Retour", admin_groups_path, class: "btn btn-secondary" %>
-          <%= link_to "Modifier", edit_admin_group_path(@group), class: "btn btn-secondary" %>
-          <%= link_to "Supprimer", admin_group_path(@group.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-secondary"%> 
+          <%= link_to fa_icon('arrow-left', text: "Retour"), admin_groups_path, class: "btn btn-outline-primary btn-sm" %>
+          <%= link_to fa_icon('edit', text: "Modifier"), edit_admin_group_path(@group), class: "btn btn-outline-secondary btn-sm" %>
+          <%= link_to fa_icon('trash', text: "Supprimer"), admin_group_path(@group.id), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-outline-danger btn-sm"%> 
         </td>
       </tr>
     </tbody>  
-  </table>
- 
+  </table> 
 </div>
