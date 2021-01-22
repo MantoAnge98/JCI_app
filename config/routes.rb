@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
  
   devise_for :users 
+  default_url_options :host => "localhost:5000"
   
   root to: "home#index"
   

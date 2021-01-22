@@ -33,6 +33,8 @@ gem 'kaminari'
 
 gem 'devise'
 
+gem 'dotenv-rails'
+
 gem 'bootstrap', '~> 5.0.0.alpha3'
  
 gem 'jquery-rails'
