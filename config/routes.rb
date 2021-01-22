@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
  
-  devise_for :users 
-  default_url_options :host => "localhost:5000"
-  
+  devise_for :users, :skip => [:registrations]
+
   root to: "home#index"
   
   #Json fromat routes
@@ -15,7 +14,7 @@ Rails.application.routes.draw do
       resources :promotions,  only: [:index]
     end
    end
-
+   
   resources :users,       only: [:show]
   resources :payments,    only: [:index]
   resources :groups,      only: [:index]
