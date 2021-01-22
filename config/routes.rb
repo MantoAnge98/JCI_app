@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
  
-  devise_for :users, :skip => [:registrations]
+  devise_for :users
 
   root to: "home#index"
   
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resources :promotions,  only: [:index]
     end
    end
-   
+
   resources :users,       only: [:show]
   resources :payments,    only: [:index]
   resources :groups,      only: [:index]
